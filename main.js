@@ -36,10 +36,6 @@ const groundMaterial = new THREE.MeshStandardMaterial({
   color: 0x555555,
   side: THREE.DoubleSide
 });
-// const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-// groundMesh.castShadow = false;
-// groundMesh.receiveShadow = true;
-// scene.add(groundMesh);
 
 const spotLight = new THREE.SpotLight(0xffffff, 3000, 0, 1, 0);
 spotLight.position.set(1, 20, 1);
