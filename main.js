@@ -32,10 +32,10 @@ controls.update();
 
 const groundGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
 groundGeometry.rotateX(-Math.PI / 2);
-const groundMaterial = new THREE.MeshStandardMaterial({
-  color: 0x555555,
-  side: THREE.DoubleSide
-});
+// const groundMaterial = new THREE.MeshStandardMaterial({
+//   color: 0x555555,
+//   side: THREE.DoubleSide
+// });
 
 const spotLight = new THREE.SpotLight(0xffffff, 3000, 0, 1, 0);
 spotLight.position.set(1, 20, 1);
@@ -48,12 +48,12 @@ loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
-  mesh.traverse((child) => {
-    if (child.isMesh) {
-      child.castShadow = true;
-      child.receiveShadow = true;
-    }
-  });
+  // mesh.traverse((child) => {
+  //   if (child.isMesh) {
+  //     child.castShadow = true;
+  //     child.receiveShadow = true;
+  //   }
+  // });
 
   mesh.position.set(0, 0, 0);
   scene.add(mesh);
