@@ -16,8 +16,8 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-camera.position.set(3, 3, 6);
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100);
+camera.position.set(2, 2, 5);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -27,7 +27,7 @@ controls.maxDistance = 12;
 controls.minPolarAngle = 0.5;
 controls.maxPolarAngle = 1.5;
 controls.autoRotate = true;
-controls.target = new THREE.Vector3(0, 1, 0);
+controls.target = new THREE.Vector3(0, 0, 0);
 controls.update();
 
 const groundGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
