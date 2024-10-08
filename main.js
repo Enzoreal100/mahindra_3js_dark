@@ -6,7 +6,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x000000);
+renderer.setClearColor(0x18003d);
 renderer.setPixelRatio(window.devicePixelRatio);
 
 renderer.shadowMap.enabled = true;
@@ -33,7 +33,7 @@ controls.update();
 const groundGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
 groundGeometry.rotateX(-Math.PI / 2);
 const groundMaterial = new THREE.MeshStandardMaterial({
-  color: 0x555555,
+  color: 0x18003d,
   side: THREE.DoubleSide
 });
 
@@ -42,7 +42,7 @@ groundMesh.castShadow = true;
 groundMesh.receiveShadow = true;
 scene.add(groundMesh);
 
-const spotLight = new THREE.SpotLight(0xffffff, 1000, 50, .3, 0.4);
+const spotLight = new THREE.SpotLight(0xffffff, 1000, 50, 10, 0.4);
 spotLight.position.set(5, 9, 1);
 spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
