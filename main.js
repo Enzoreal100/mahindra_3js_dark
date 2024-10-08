@@ -6,7 +6,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0xffffff);
+renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
 
 renderer.shadowMap.enabled = true;
@@ -19,7 +19,6 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100);
 camera.position.set(2, 2, 5);
 
-//vasco
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enablePan = false;
@@ -33,14 +32,19 @@ controls.update();
 
 const groundGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
 groundGeometry.rotateX(-Math.PI / 2);
-// const groundMaterial = new THREE.MeshStandardMaterial({
-//   color: 0x555555,
-//   side: THREE.DoubleSide
-// });
+const groundMaterial = new THREE.MeshStandardMaterial({
+  color: 0x555555,
+  side: THREE.DoubleSide
+});
 
-const spotLight = new THREE.SpotLight(0xffffff, 3000, 0, 1, 0);
-spotLight.position.set(1, 20, 1);
-spotLight.castShadow = false;
+const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+groundMesh.castShadow = true;
+groundMesh.receiveShadow = true;
+scene.add(groundMesh);
+
+const spotLight = new THREE.SpotLight(0xffffff, 1000, 50, .3, 0.4);
+spotLight.position.set(5, 9, 1);
+spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
@@ -49,12 +53,12 @@ loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
-  // mesh.traverse((child) => {
-  //   if (child.isMesh) {
-  //     child.castShadow = true;
-  //     child.receiveShadow = true;
-  //   }
-  // });
+  mesh.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;
+      child.receiveShadow = true;
+    }
+  });
 
   mesh.position.set(0, 0, 0);
   scene.add(mesh);
